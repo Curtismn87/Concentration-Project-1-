@@ -1,5 +1,8 @@
 // $( document ).ready(function() {
     // console.log( "ready!" );
+var turn = 0;
+var checkOne;
+var checkTwo;
 var images = {a:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK3330.jpg",
 b:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK4124.jpg",
 c:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK4470.jpg",
@@ -29,21 +32,45 @@ $("#new_game").on("click",function(){
 //reset button shows all cards
 $("#reset_button").on("click", function(){
   shuffle(mirrorImages);
+  //assign images to gameboard
   for (var i = 0; i < mirrorImages.length; i++){
-  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);
+  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}
   $('img').show();
-  $(".card").css("height", "6em");}
-
+  $(".card").css("height", "6em");
   console.log("working?");
   console.log(mirrorImages);
 });
 
 // Click on card to reveal
 $(".card").on("click", function(){
-  $('img', this).show();
-  console.log("working?");
-});
+  if (turn === 0){
+    $('img', this).show();
+    checkOne = $("img", this).attr("src");
+    turn = 1;
+    console.log(checkOne);
+    console.log(typeof(checkOne));
+    console.log("first card");
+    console.log(turn);}
+  else if (turn === 1){
+    $('img', this).show();
+    checkTwo = $("img", this).attr("src");
+    console.log(checkTwo);
+    console.log(checkTwo);
+    console.log("Second Card?");
+    turn = 0;
+  if (checkOne === checkTwo){
+    console.log("Match");
+  }
+  else $('img', this).hide();
+}
 
+});
+  /*  if (checkTwo === CheckOne){
+      console.log("match");} */
+
+// Click on second card to reveal
+
+// Shuffle fuction taken from the internet.
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex ;
   // While there remain elements to shuffle...
@@ -58,12 +85,8 @@ function shuffle(array) {
   }
   return array;
 }
-// Click on second card to reveal
 // If match keep cards facing up
 // If not match keep cards down
 // Continue until are cards are facing up
 
 //});
-
-
-// test code
