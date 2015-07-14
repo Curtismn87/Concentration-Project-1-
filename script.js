@@ -58,7 +58,12 @@ $(".card").on("click", function(){
 }
 
 });
-
+function turnClicksOn(){
+  setTimeout(turnOffClicks, 2000);
+}
+function turnOnClicks(){
+  $(".card").off();
+}
 function hideInterval (){setTimeout(hideImages, 2000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
