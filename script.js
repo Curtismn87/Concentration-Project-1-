@@ -24,28 +24,13 @@ n:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_f
 var mirrorImages = [images.a, images.a, images.b, images.b, images.c, images.c, images.d, images.d, images.e, images.e,
   images.f, images.f, images.g, images.g, images.h, images.h, images.i, images.i,
   images.j, images.j, images.k, images.k, images.l, images.l];
-// Start new game by clicking button
-$("#new_game").on("click",function(){
-// Hides all cards, assigns value
-  $("img").hide();
-  $(".card").css("width", "236.969");
-  $(".card").css("length", "157.984");
-  console.log("new game button working?");
-});
-//reset button shows all cards
-$("#reset_button").on("click", function(){
-  shuffle(mirrorImages);
-  //assign images to gameboard
-  for (var i = 0; i < mirrorImages.length; i++){
-  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}
-  $('img').show();
-  $(".card").css("height", "6em");
-  guesses = 0;
-  gameCounter = 0;
-  turn = 0;
-  $("#guessCount").text(guesses);
-});
 
+reset();
+
+// Start new game by clicking button
+$("#new_game").on("click", newGame);
+//reset button shows all cards
+$("#reset_button").on("click", reset);
 // Click on card to reveal
 $(".card").on("click", function(){
   if (turn === 0){
@@ -57,14 +42,10 @@ $(".card").on("click", function(){
     $('img', this).show();
     checkTwo = $("img", this).attr("src");
     secondGuessImage = $('img', this);
-    console.log(checkTwo);
-    console.log(checkTwo);
-    console.log("Second Card?");
     turn = 0;
     guesses = guesses + 1;
     $("#guessCount").text(guesses);
   if (checkOne === checkTwo){
-    console.log("Match");
     gameCounter = gameCounter + 1;
     if (gameCounter === 12){
       alert("You win! Click reset to 'reset' the board and 'Start Game' to play");
@@ -97,5 +78,31 @@ function shuffle(array) {
   }
   return array;
 }
+
+function reset(){
+  shuffle(mirrorImages);
+  //assign images to gameboard
+  for (var i = 0; i < mirrorImages.length; i++){
+    // assigns image for every div
+  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}
+  // shows the image so user can see
+  $('img').show();
+  // sets height of image
+  $(".card").css("height", "6em");
+  // resets counters
+  guesses = 0;
+  gameCounter = 0;
+  turn = 0;
+  $("#guessCount").text(guesses);
+}
+function newGame(){
+// Hides all cards, assigns value
+  $("img").hide();
+  $(".card").css("width", "236.969");
+  $(".card").css("length", "157.984");
+}
+
+
+
 
 });

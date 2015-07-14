@@ -26,6 +26,7 @@ width: 100px;
 margin: 1em;
 top: 0px;
 text-align: center;
+display: inline-block;
 }
 .games_won {
   color: slateblue;
@@ -35,6 +36,7 @@ text-align: center;
   margin: 1em;
   top: 0px;
   text-align: center;
+  display: inline;
 }
 
 
