@@ -47,6 +47,7 @@ $(".card").on("click", function(){
     $('img', this).show();
     checkOne = $("img", this).attr("src");
     turn = 1;
+    firstGuessImage = $('img', this);
     console.log(checkOne);
     console.log(typeof(checkOne));
     console.log("first card");
@@ -54,6 +55,7 @@ $(".card").on("click", function(){
   else if (turn === 1){
     $('img', this).show();
     checkTwo = $("img", this).attr("src");
+    secondGuessImage = $('img', this);
     console.log(checkTwo);
     console.log(checkTwo);
     console.log("Second Card?");
@@ -61,12 +63,16 @@ $(".card").on("click", function(){
   if (checkOne === checkTwo){
     console.log("Match");
   }
-  else $('img', this).hide();
+  else hideInterval();
+
+  //secondGuessImage.hide();
+  //firstGuessImage.hide();
 }
 
 });
-  /*  if (checkTwo === CheckOne){
-      console.log("match");} */
+function hideInterval (){setInterval(hideImages, 3000);}
+function hideImages(){secondGuessImage.hide();
+firstGuessImage.hide();}
 
 // Click on second card to reveal
 
