@@ -33,37 +33,45 @@ $("#new_game").on("click", newGame);
 //reset button shows all cards
 $("#reset_button").on("click", reset);
 // Click on card to reveal
-$(".card").on("click", function(){
-  if (turn === 0){
-    $('img', this).show();
-    checkOne = $("img", this).attr("src");
-    turn = 1;
-    firstGuessImage = $('img', this);}
-  else if (turn === 1){
-    $('img', this).show();
-    checkTwo = $("img", this).attr("src");
-    secondGuessImage = $('img', this);
-    turn = 0;
-    guesses = guesses + 1;
-    $("#guessCount").text(guesses);
-  if (checkOne === checkTwo){
-    gameCounter = gameCounter + 1;
-    if (gameCounter === 12){
-      alert("You win! Click reset to 'reset' the board and 'Start Game' to play");
-      gamesWon = gamesWon + 1;
-      $("#wonCount").text(gamesWon);
-    }
-  }
-  else hideInterval();
-}
+$(".card").on("click", makeMoves);
 
-});
-function turnClicksOn(){
-  setTimeout(turnOffClicks, 2000);
-}
-function turnOnClicks(){
-  $(".card").off();
-}
+function cardsOff(){
+$('.card').off();
+console.log("cards off");}
+
+function cardsOnInterval(){
+  setTimeout(cardsOn, 1000);
+console.log("cards back on");}
+function cardsOn(){
+  $('.card').on("click", makeMoves);
+  }
+
+  //Makes moves for the game
+  function makeMoves(){
+    if (turn === 0){
+      $('img', this).show();
+      checkOne = $("img", this).attr("src");
+      turn = 1;
+      firstGuessImage = $('img', this);}
+    else if (turn === 1){
+      $('img', this).show();
+      checkTwo = $("img", this).attr("src");
+      secondGuessImage = $('img', this);
+      turn = 0;
+      guesses = guesses + 1;
+      $("#guessCount").text(guesses);
+    if (checkOne === checkTwo){
+      gameCounter = gameCounter + 1;
+      if (gameCounter === 12){
+        alert("You win! Click reset to 'reset' the board and 'Start Game' to play");
+        gamesWon = gamesWon + 1;
+        $("#wonCount").text(gamesWon);
+      }
+    }
+    else hideInterval(); cardsOff(), cardsOnInterval();
+
+  }}
+
 function hideInterval (){setTimeout(hideImages, 1000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
