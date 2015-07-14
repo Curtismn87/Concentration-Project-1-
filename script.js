@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-console.log( "ready!" );
 
 var guesses = 0;
 var gamesWon = 0;
@@ -36,12 +35,10 @@ $("#reset_button").on("click", reset);
 $(".card").on("click", makeMoves);
 
 function cardsOff(){
-$('.card').off();
-console.log("cards off");}
+$('.card').off();}
 
 function cardsOnInterval(){
-  setTimeout(cardsOn, 1000);
-console.log("cards back on");}
+  setTimeout(cardsOn, 1000);}
 function cardsOn(){
   $('.card').on("click", makeMoves);
   }
@@ -117,7 +114,6 @@ function newGame(){
   $("img").hide();
   $(".card").css("width", "236.969");
   $(".card").css("length", "157.984");
-  console.log("new game button working?");
   $("#adrian").show();
 }
 
