@@ -68,7 +68,7 @@ function cardsOn(){
         $("#wonCount").text(gamesWon);
       }
     }
-    else hideInterval(); cardsOff(), cardsOnInterval();
+    else hideInterval(); cardsOff(); cardsOnInterval();
 
   }}
 
