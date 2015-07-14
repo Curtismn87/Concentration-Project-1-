@@ -1,5 +1,8 @@
-// $( document ).ready(function() {
-    // console.log( "ready!" );
+$( document ).ready(function() {
+console.log( "ready!" );
+var guesses = 0;
+var gamesWon = 0;
+var gameCounter = 0;
 var turn = 0;
 var checkOne;
 var checkTwo;
@@ -37,8 +40,10 @@ $("#reset_button").on("click", function(){
   $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}
   $('img').show();
   $(".card").css("height", "6em");
-  console.log("working?");
-  console.log(mirrorImages);
+  guesses = 0;
+  gameCounter = 0;
+  turn = 0;
+  $("#guessCount").text(guesses);
 });
 
 // Click on card to reveal
@@ -47,11 +52,7 @@ $(".card").on("click", function(){
     $('img', this).show();
     checkOne = $("img", this).attr("src");
     turn = 1;
-    firstGuessImage = $('img', this);
-    console.log(checkOne);
-    console.log(typeof(checkOne));
-    console.log("first card");
-    console.log(turn);}
+    firstGuessImage = $('img', this);}
   else if (turn === 1){
     $('img', this).show();
     checkTwo = $("img", this).attr("src");
@@ -60,14 +61,22 @@ $(".card").on("click", function(){
     console.log(checkTwo);
     console.log("Second Card?");
     turn = 0;
+    guesses = guesses + 1;
+    $("#guessCount").text(guesses);
   if (checkOne === checkTwo){
     console.log("Match");
+    gameCounter = gameCounter + 1;
+    if (gameCounter === 12){
+      alert("You win! Click reset to 'reset' the board and 'Start Game' to play");
+      gamesWon = gamesWon + 1;
+      $("#wonCount").text(gamesWon);
+    }
   }
   else hideInterval();
 }
 
 });
-function hideInterval (){setTimeout(hideImages, 3000);}
+function hideInterval (){setTimeout(hideImages, 2000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
 
@@ -88,8 +97,5 @@ function shuffle(array) {
   }
   return array;
 }
-// If match keep cards facing up
-// If not match keep cards down
-// Continue until are cards are facing up
 
-//});
+});
