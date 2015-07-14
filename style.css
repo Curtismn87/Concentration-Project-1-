@@ -2,9 +2,10 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-          background-color: lemonchiffon;
 }
-
+body{
+  background-color: lemonchiffon;
+}
 .button {
   width: 6em;
   height: 2em;
@@ -18,6 +19,9 @@ h1{
   color: mediumblue;
 text-align: center;
 }
+p{
+  display: inline-block;
+}
 
 .guesses {
 color: slateblue;
@@ -27,6 +31,7 @@ margin: 1em;
 top: 0px;
 text-align: center;
 display: inline-block;
+background-color: rgba(255, 250, 205, .8);
 }
 .games_won {
   color: slateblue;
@@ -37,9 +42,8 @@ display: inline-block;
   top: 0px;
   text-align: center;
   display: inline;
+  background-color: rgba(255, 250, 205, .8);
 }
-
-
 
 .card {
   border-color: black;

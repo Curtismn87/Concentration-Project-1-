@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 console.log( "ready!" );
+
 var guesses = 0;
 var gamesWon = 0;
 var gameCounter = 0;
@@ -57,6 +58,7 @@ $(".card").on("click", function(){
 }
 
 });
+
 function hideInterval (){setTimeout(hideImages, 2000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
@@ -80,6 +82,7 @@ function shuffle(array) {
 }
 
 function reset(){
+  $("#adrian").hide();
   shuffle(mirrorImages);
   //assign images to gameboard
   for (var i = 0; i < mirrorImages.length; i++){
@@ -90,6 +93,7 @@ function reset(){
   // sets height of image
   $(".card").css("height", "6em");
   // resets counters
+  $(".card").css("background", "burlywood");
   guesses = 0;
   gameCounter = 0;
   turn = 0;
@@ -100,9 +104,11 @@ function newGame(){
   $("img").hide();
   $(".card").css("width", "236.969");
   $(".card").css("length", "157.984");
+  console.log("new game button working?");
+  $("#adrian").show();
 }
 
-
-
-
+$("#adrian").on("click", function(){
+  $(".card").css("background", "url(http://media.giphy.com/media/K5IEMtDZHxQZy/giphy-tumblr.gif)");
+});
 });
