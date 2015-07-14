@@ -64,13 +64,10 @@ $(".card").on("click", function(){
     console.log("Match");
   }
   else hideInterval();
-
-  //secondGuessImage.hide();
-  //firstGuessImage.hide();
 }
 
 });
-function hideInterval (){setInterval(hideImages, 3000);}
+function hideInterval (){setTimeout(hideImages, 3000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
 
