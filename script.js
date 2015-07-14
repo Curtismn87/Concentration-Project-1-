@@ -64,7 +64,7 @@ function turnClicksOn(){
 function turnOnClicks(){
   $(".card").off();
 }
-function hideInterval (){setTimeout(hideImages, 2000);}
+function hideInterval (){setTimeout(hideImages, 1000);}
 function hideImages(){secondGuessImage.hide();
 firstGuessImage.hide();}
 
