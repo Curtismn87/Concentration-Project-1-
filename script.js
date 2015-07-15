@@ -1,11 +1,12 @@
 $( document ).ready(function() {
+// define variables
 
-var guesses = 0;
-var gamesWon = 0;
-var gameCounter = 0;
-var turn = 0;
-var checkOne;
-var checkTwo;
+var guesses = 0;//Pick 2 cards per guess, keeps track of guesses
+var gamesWon = 0;//counts how many games have been won
+var gameCounter = 0;//counts correct guesses until win
+var turn = 0;//keeps of how many cards have been picked per guess, limit 2
+var checkOne;//saves value of first card picked to compare to second card
+var checkTwo;//saves value of second card picked to compare to first
 var images = {a:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK3330.jpg",
 b:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK4124.jpg",
 c:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK4470.jpg",
@@ -19,61 +20,64 @@ j:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_H
 k:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK5708.jpg",
 l:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_HNCK6001.jpg",
 m:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_IMG_3535.jpg",
-n:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_foodiesfeed.com_DSC_0001-9.jpg"};
+n:"/Users/curtismn87/WDI/projects/Concentration-Project-1-/images/picjumbo.com_foodiesfeed.com_DSC_0001-9.jpg"}; // src of pics
 
 var mirrorImages = [images.a, images.a, images.b, images.b, images.c, images.c, images.d, images.d, images.e, images.e,
   images.f, images.f, images.g, images.g, images.h, images.h, images.i, images.i,
-  images.j, images.j, images.k, images.k, images.l, images.l];
-
+  images.j, images.j, images.k, images.k, images.l, images.l]; //matching values to be entered into card div
+// reset gameboard upon load for play
 reset();
+//add events for buttons and cards
+$("#new_game").on("click", newGame);// Start new game by clicking button
+$("#reset_button").on("click", reset);//reset button shows all cards
+$(".card").on("click", makeMoves);// Click on card to reveal
 
-// Start new game by clicking button
-$("#new_game").on("click", newGame);
-//reset button shows all cards
-$("#reset_button").on("click", reset);
-// Click on card to reveal
-$(".card").on("click", makeMoves);
+function cardsOff(){//turns ability to click on cards off
+$('.card').off(); // ends click event
+} //closes cardsOff function
 
-function cardsOff(){
-$('.card').off();}
+function cardsOnInterval(){ // turns ability to click cards back on after 1 second
+  setTimeout(cardsOn, 1000);
+}//closes cardsOnInterval function
 
-function cardsOnInterval(){
-  setTimeout(cardsOn, 1000);}
-function cardsOn(){
-  $('.card').on("click", makeMoves);
-  }
+function cardsOn(){ // turns ability to click on cards
+  $('.card').on("click", makeMoves); // click event for cards
+}// closes cardsOn function
 
   //Makes moves for the game
   function makeMoves(){
-    if (turn === 0){
-      $('img', this).show();
-      checkOne = $("img", this).attr("src");
-      turn = 1;
-      firstGuessImage = $('img', this);}
-    else if (turn === 1){
-      $('img', this).show();
-      checkTwo = $("img", this).attr("src");
-      secondGuessImage = $('img', this);
-      turn = 0;
-      guesses = guesses + 1;
-      $("#guessCount").text(guesses);
-    if (checkOne === checkTwo){
-      gameCounter = gameCounter + 1;
-      if (gameCounter === 12){
-        alert("You win! Click reset to 'reset' the board and 'Start Game' to play");
-        gamesWon = gamesWon + 1;
-        $("#wonCount").text(gamesWon);
-      }
-    }
-    else hideInterval(); cardsOff(); cardsOnInterval();
+    if (turn === 0){ // indictaes first card in the turn
+      $('img', this).show(); // shows img of card
+      checkOne = $("img", this).attr("src"); // saves value of first image to variable for conditional
+      turn = 1; // updates counter to allow for second card to be choosen
+      firstGuessImage = $('img', this); // saves first image DOM location in variable to be hidden after turn is over
+    }  //closes If conditional
+    else if (turn === 1){ // indictes second card in turn
+      $('img', this).show(); //shows img of card
+      checkTwo = $("img", this).attr("src"); // saves value of second images to variable for conditional
+      secondGuessImage = $('img', this); //saves second image DOM location in variable to be hidden after turn is over
+      turn = 0; // updates counter for first card again for next turn
+      guesses = guesses + 1; // updates counter to indicate one series of gusses has been made
+      $("#guessCount").text(guesses); // Visually shows number of guesses to user
+    if (checkOne === checkTwo){ // compares values of first card and second card to evaluate if they are matching
+      gameCounter = gameCounter + 1; // updates game counter to indicate a match has been made
+      if (gameCounter === 12){ // evaluates game counter to see if total numbers of possible matches has been met
+        alert("You win! Click reset to 'reset' the board and 'Start Game' to play"); // winning message
+        gamesWon = gamesWon + 1; // updates counter to indicate how many games have been won
+        $("#wonCount").text(gamesWon); // displays number of games won to user
+      } // closes gamesCounter conditional
+    } // closes match checking conditional
+      else hideInterval(); // hides guesses at end of turn in no match
+      cardsOff();  // prevents user from clicking while cards are visable
+      cardsOnInterval(); // allows user to click on cards again after cards are hidden
 
-  }}
+  } //closes else if
+} // closes makeMoves function
 
-function hideInterval (){setTimeout(hideImages, 1000);}
-function hideImages(){secondGuessImage.hide();
+function hideInterval (){setTimeout(hideImages, 1000);} // hides the guesses after 1 second
+function hideImages(){secondGuessImage.hide(); // hides the first and second guess again
 firstGuessImage.hide();}
 
-// Click on second card to reveal
 
 // Shuffle fuction taken from the internet.
 function shuffle(array) {
@@ -91,33 +95,31 @@ function shuffle(array) {
   return array;
 }
 
+// resets the game gameboard
 function reset(){
-  $("#adrian").hide();
-  shuffle(mirrorImages);
-  //assign images to gameboard
-  for (var i = 0; i < mirrorImages.length; i++){
-    // assigns image for every div
-  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}
-  // shows the image so user can see
-  $('img').show();
-  // sets height of image
-  $(".card").css("height", "6em");
-  // resets counters
-  $(".card").css("background", "burlywood");
-  guesses = 0;
-  gameCounter = 0;
-  turn = 0;
+  $("#adrian").hide(); //hides easter egg
+  shuffle(mirrorImages);//assign images to gameboard
+  for (var i = 0; i < mirrorImages.length; i++){ // for loop to assign images
+  $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}  // assigns image for every div
+  $('img').show();// shows the image so user can see
+  $(".card").css("height", "6em");// sets height of image
+  $(".card").css("background", "burlywood");// sets background so indicate cards being face down
+  guesses = 0;   // resets counters
+  gameCounter = 0;   // resets counters
+  turn = 0;   // resets counters
   $("#guessCount").text(guesses);
-}
-function newGame(){
-// Hides all cards, assigns value
-  $("img").hide();
-  $(".card").css("width", "236.969");
-  $(".card").css("length", "157.984");
-  $("#adrian").show();
-}
+}// closes reset function
 
+function newGame(){ // hides cards
+  $("img").hide();// Hides all cards, assigns value
+  $(".card").css("width", "236.969"); // sets div width
+  $(".card").css("length", "157.984"); // sets div height
+  $("#adrian").show(); // makes easter egg visable
+} // ends newGame function
+
+// easter egg - I know what it does, you'll have to find out...
 $("#adrian").on("click", function(){
   $(".card").css("background", "url(http://media.giphy.com/media/K5IEMtDZHxQZy/giphy-tumblr.gif)");
-});
-});
+} // closes eastr egg function
+); //closes easter egg click event
+});// closes document ready
