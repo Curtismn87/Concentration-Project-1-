@@ -97,7 +97,6 @@ function shuffle(array) {
 
 // resets the game gameboard
 function reset(){
-  $("#adrian").hide(); //hides easter egg
   shuffle(mirrorImages);//assign images to gameboard
   for (var i = 0; i < mirrorImages.length; i++){ // for loop to assign images
   $(".card").eq(i).children("img").attr("src", mirrorImages[i]);}  // assigns image for every div
@@ -117,9 +116,4 @@ function newGame(){ // hides cards
   $("#adrian").show(); // makes easter egg visable
 } // ends newGame function
 
-// easter egg - I know what it does, you'll have to find out...
-$("#adrian").on("click", function(){
-  $(".card").css("background", "url(http://media.giphy.com/media/K5IEMtDZHxQZy/giphy-tumblr.gif)");
-} // closes eastr egg function
-); //closes easter egg click event
 });// closes document ready
