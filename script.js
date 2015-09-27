@@ -7,20 +7,20 @@ var gameCounter = 0;//counts correct guesses until win
 var turn = 0;//keeps of how many cards have been picked per guess, limit 2
 var checkOne;//saves value of first card picked to compare to second card
 var checkTwo;//saves value of second card picked to compare to first
-var images = {a:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK3330.jpg",
-b:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK4124.jpg",
-c:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK4470.jpg",
-d:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK4477.jpg",
-e:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK4938.jpg",
-f:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5532.jpg",
-g:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5555.jpg",
-h:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5566.jpg",
-i:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5640.jpg",
-j:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5703.jpg",
-k:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK5708.jpg",
-l:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_HNCK6001.jpg",
-m:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_IMG_3535.jpg",
-n:"https://github.com/Curtismn87/Concentration-Project-1-/blob/master/images/picjumbo.com_foodiesfeed.com_DSC_0001-9.jpg"}; // src of pics
+var images = {a:"images/picjumbo.com_HNCK3330.jpg",
+b:"images/picjumbo.com_HNCK4124.jpg",
+c:"images/picjumbo.com_HNCK4470.jpg",
+d:"images/picjumbo.com_HNCK4477.jpg",
+e:"images/picjumbo.com_HNCK4938.jpg",
+f:"images/picjumbo.com_HNCK5532.jpg",
+g:"images/picjumbo.com_HNCK5555.jpg",
+h:"images/picjumbo.com_HNCK5566.jpg",
+i:"images/picjumbo.com_HNCK5640.jpg",
+j:"images/picjumbo.com_HNCK5703.jpg",
+k:"images/picjumbo.com_HNCK5708.jpg",
+l:"images/picjumbo.com_HNCK6001.jpg",
+m:"images/picjumbo.com_IMG_3535.jpg",
+n:"images/picjumbo.com_foodiesfeed.com_DSC_0001-9.jpg"}; // src of pics
 
 var mirrorImages = [images.a, images.a, images.b, images.b, images.c, images.c, images.d, images.d, images.e, images.e,
   images.f, images.f, images.g, images.g, images.h, images.h, images.i, images.i,
